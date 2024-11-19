@@ -6,58 +6,22 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Search, Settings, Calendar, Hash, AudioWaveformIcon as Waveform } from 'lucide-react'
 import { cn } from "@/lib/utils"
+import { VoicesByAccent, NavItem } from "@/app/lib/types"
 
-type Voice = {
-  name: string
-  gender: "Female" | "Male"
-}
 
-type VoicesByLanguage = {
-  [key: string]: Voice[]
-}
-
-const voiceData: VoicesByLanguage = {
-  English: [
-    { name: "Marie", gender: "Female" },
-    { name: "Sarah", gender: "Female" },
-    { name: "Mark", gender: "Male" },
-    { name: "Sam", gender: "Male" },
-  ],
-  Spanish: [
-    { name: "Marie", gender: "Female" },
-    { name: "Sarah", gender: "Female" },
-    { name: "Mark", gender: "Male" },
-    { name: "Sam", gender: "Male" },
-  ],
-  French: [
-    { name: "Marie", gender: "Female" },
-    { name: "Sarah", gender: "Female" },
-    { name: "Mark", gender: "Male" },
-    { name: "Sam", gender: "Male" },
-    { name: "Marie", gender: "Female" },
-    { name: "Sarah", gender: "Female" },
-  ],
-}
-
-type NavItem = {
-  icon: React.ElementType
-  label: string
-  content: React.ReactNode
-}
-
-export function VoiceSelectionNav() {
+export function VoiceSelectionNav({voiceData}:{voiceData: VoicesByAccent}) {
   const [selectedNav, setSelectedNav] = useState<string>("voices")
   const [searchTerm, setSearchTerm] = useState("")
 
   const filteredVoices = Object.entries(voiceData).reduce((acc, [language, voices]) => {
     const filtered = voices.filter(
-      voice => voice.name.toLowerCase().includes(searchTerm.toLowerCase())
+      (voice) => voice.voice_name.toLowerCase().includes(searchTerm.toLowerCase())
     )
     if (filtered.length > 0) {
       acc[language] = filtered
     }
     return acc
-  }, {} as VoicesByLanguage)
+  }, {} as VoicesByAccent)
 
   const navItems: { [key: string]: NavItem } = {
     voices: {
@@ -89,7 +53,7 @@ export function VoiceSelectionNav() {
                       key={`${language}-${index}`}
                       className="flex items-center justify-between p-2 rounded-lg hover:bg-lightPurple cursor-pointer"
                     >
-                      <span className="font-medium">{voice.name}</span>
+                      <span className="font-medium">{voice.voice_name}</span>
                       <Badge
                         variant="secondary"
                         className={cn(

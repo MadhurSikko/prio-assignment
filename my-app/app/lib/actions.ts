@@ -48,13 +48,22 @@ export async function getVoices(token: string) {
     maxBodyLength: Infinity,
     url: 'https://api.retellai.com/list-voices',
     headers: { 
-      'Authorization': 'Bearer key_ec9abe916c45f1895268f3cae590'
+      'Authorization': `Bearer ${token}`
     }
   };
   
   try {
     const response = await axios.request(config);
-    const sortedData = response.data.sort()
+    const voicesByLanguage = response.data.reduce((acc:any, voice:any) => {
+      // Group by accent
+      if (!acc[voice.accent]) {
+          acc[voice.accent] = [];
+      }
+      acc[voice.accent].push(voice);
+      return acc;
+  }, {});
+
+    return voicesByLanguage
   }
   catch (error) {
     console.log(error);
