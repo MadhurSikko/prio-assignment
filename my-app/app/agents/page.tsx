@@ -2,11 +2,12 @@ import { AgentTableWithPagination } from "@/components/agent-table-with-paginati
 import { getAgents } from "@/app/lib/actions"
 import { Agent } from "@/app/lib/types";
 
-const TOKEN = "key_ec9abe916c45f1895268f3cae590"
+// add token below
+const token = process.env.token || "";
 
 
 export default async function Home() {
-    const agents: Agent[] = await getAgents(TOKEN);
+    const agents: Agent[] = await getAgents(token);
     
     return (
         <main>

@@ -5,7 +5,7 @@ import { PhoneNumber, Voices, VoicesByAccent } from "@/app/lib/types";
 import { ServerFormComponent } from "@/components/server-form";
 
 //add token below
-const token = "key_ec9abe916c45f1895268f3cae590";
+const token = process.env.token || "";
 
 export default async function Page({params, }: { params: Promise<{ agent_id: string }>}) {
     const agent_id = (await params).agent_id
