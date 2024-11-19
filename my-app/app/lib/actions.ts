@@ -70,10 +70,7 @@ export async function getVoices(token: string) {
   }
 }
 
-export async function updateAgentName(formData: FormData) {
-  const token = formData.get('token');
-  const agent_id = formData.get('agent_id');
-  const agent_name = formData.get('agent_name');
+export async function updateAgentName({token, agent_id}:{token: string, agent_id: string}, agent_name: string) {
   
   let data = JSON.stringify({
     "agent_name": agent_name
@@ -82,7 +79,7 @@ export async function updateAgentName(formData: FormData) {
   let config = {
     method: 'patch',
     maxBodyLength: Infinity,
-    url: 'https://api.retellai.com/update-agent/agent_1dea0bb6b31a63db231730c55c',
+    url: `https://api.retellai.com/update-agent/${agent_id}`,
     headers: { 
       'Authorization': `Bearer ${token}`, 
       'Content-Type': 'application/json'

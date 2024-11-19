@@ -1,5 +1,6 @@
 import { getAgent, updateAgentName } from "@/app/lib/actions";
-
+import { HeaderEditableAgent } from "@/components/headerAgent";
+import Navbar from "@/components/nav-bar";
 //add token below
 const token = "key_ec9abe916c45f1895268f3cae590";
 
@@ -17,17 +18,10 @@ export default async function layout({
     
     return (
       <section>
-        <div className="flex items-center justify-center bg-darkPurple h-20 ">
-            <p className="text-white text-3xl" contentEditable={true} suppressContentEditableWarning={true}>{agent_name}</p>
-            
-            {/* <form action={updateAgentName}>
-                <input type="hidden" name="token" value={token} />
-                <input type="hidden" name="agent_id" value={agent_id} />
-                <input type="text" name="agent_name" defaultValue={agent_name}></input>
-                <input type="submit"></input>
-            </form> */}
-
-        </div>
+        {/* <div className="flex items-center justify-center bg-darkPurple h-20 ">
+            <HeaderEditableAgent agent_name={agent_name} />
+        </div> */}
+        <Navbar agent_name={agent_name} token={token} agent_id={agent_id}/>
 
         <div>
 
