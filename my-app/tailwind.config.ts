@@ -51,6 +51,9 @@ export default {
   				'5': 'hsl(var(--chart-5))'
   			},
 			lightPurple: '#ebe9fb',
+			darkPurple: '#5f4ee1',
+			darkLightPurple: '#6d5ced',
+			slightlyDarkerPurple: '#d7d2f7'
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

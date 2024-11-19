@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Input } from "@/components/ui/input"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
@@ -7,6 +7,7 @@ import { Search, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Agent } from '@/app/lib/types'
 import { PurpleTag } from "@/components/purple-tag"
 import getDate from '@/app/lib/utils'
+import { useRouter } from 'next/navigation'
 
 // const agents: Agent[] = [
 //   { name: "John Doe", type: "Sales", voice: "Deep", phone: "123-456-7890", editedBy: "Admin1" },
@@ -27,7 +28,9 @@ const ITEMS_PER_PAGE = 7;
 export function AgentTableWithPagination({agents}:{agents: Agent[]}) {
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  
+  const router = useRouter();
+
+  // This needs fixing
   const filteredAgents = agents.filter(agent =>
     Object.values(agent).some(value =>
       value.toLowerCase().includes(searchTerm.toLowerCase())
@@ -71,13 +74,15 @@ export function AgentTableWithPagination({agents}:{agents: Agent[]}) {
         <TableBody>
           {paginatedAgents.map((agent, index) => (
             
-              <TableRow key={index}>
-                  <TableCell>{agent.agent_name.split(" ")[0] + " " + agent.agent_name.split(" ")[1]}</TableCell>
-                  <TableCell><PurpleTag text={agent.agent_name.substring(agent.agent_name.indexOf('(')+1, agent.agent_name.indexOf(')'))} className=''/></TableCell>
-                  <TableCell>{agent.voice_id.split("-")[1]}</TableCell>
-                  <TableCell>{agent.phone || "-"}</TableCell> 
-                  <TableCell>{getDate(agent.last_modification_timestamp) }</TableCell>
-              </TableRow>
+            
+              <TableRow key={index} onClick={() => router.push(`/agents/${agent.agent_id}`)}>
+                    <TableCell>{agent.agent_name}</TableCell>
+                    <TableCell><PurpleTag text={agent.agent_name.substring(agent.agent_name.indexOf('(')+1, agent.agent_name.indexOf(')'))} className=''/></TableCell>
+                    <TableCell>{agent.voice_id.split("-")[1]}</TableCell>
+                    <TableCell>{agent.phone || "-"}</TableCell> 
+                    <TableCell>{getDate(agent.last_modification_timestamp) }</TableCell>
+                </TableRow>
+            
             
           ))}
         </TableBody>
