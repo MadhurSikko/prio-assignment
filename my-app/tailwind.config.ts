@@ -53,7 +53,8 @@ export default {
 			lightPurple: '#ebe9fb',
 			darkPurple: '#5f4ee1',
 			darkLightPurple: '#6d5ced',
-			slightlyDarkerPurple: '#d7d2f7'
+			slightlyDarkerPurple: '#d7d2f7',
+			borderBlack: "#b2b2b2",
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

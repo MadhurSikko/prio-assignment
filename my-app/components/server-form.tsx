@@ -15,7 +15,7 @@ export function ServerFormComponent() {
           name="name" 
           placeholder="" 
           required
-          className="bg-white "
+          className="bg-white border-borderBlack rounded-lg		 "
         />
       </div>
       <div className="">
@@ -25,8 +25,8 @@ export function ServerFormComponent() {
           name="prompt" 
           placeholder="" 
           required
-          className="max-h-screen bg-white"
-
+          className="max-h-screen bg-white border-borderBlack rounded-lg	"
+          rows={30}
         />
       </div>
       
