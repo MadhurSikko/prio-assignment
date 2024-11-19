@@ -2,21 +2,14 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-## how to get started with the app
-
 1. create an .env file in the /MY-APP folder
 2. add token="your_token"
-3. You're done
+3. install all the dependencies using npm
+```bash
+    npm install
+```
+2. start the development server using
+```bash
+    npm run dev
+```
 
