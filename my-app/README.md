@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ## Getting Started
 
 1. create an .env file in the /MY-APP folder
-2. add token="your_token"
+2. add token="your_token" in .env file
 3. install all the dependencies using npm
 ```bash
     npm install
