@@ -1,14 +1,14 @@
-import { getAgent, getPhoneNumbers, getVoices } from "@/app/lib/actions";
+import { getPhoneNumbers, getVoices } from "@/app/lib/actions";
 import { VoiceSelectionNav } from "@/components/voice-selection-nav";
 import { CommunicationForm } from "@/components/communication-form";
-import { PhoneNumber, Voices, VoicesByAccent } from "@/app/lib/types";
+import { PhoneNumber, VoicesByAccent } from "@/app/lib/types";
 import { ServerFormComponent } from "@/components/server-form";
 
 //add token below
 const token = process.env.token || "";
 
 export default async function Page({params, }: { params: Promise<{ agent_id: string }>}) {
-    const agent_id = (await params).agent_id
+    // const agent_id = (await params).agent_id
     
     // const agent = await getAgent({token, agent_id});
     const voiceData:VoicesByAccent = await getVoices(token); 

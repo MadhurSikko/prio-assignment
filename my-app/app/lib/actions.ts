@@ -3,7 +3,7 @@ import axios from "axios";
 import { revalidatePath } from "next/cache";
 
 export async function getAgents(token: string) {
-    let config = {
+    const config = {
         method: 'get',
         maxBodyLength: Infinity,
         url: 'https://api.retellai.com/list-agents',
@@ -24,7 +24,7 @@ export async function getAgents(token: string) {
 }
 
 export async function getAgent({token, agent_id}: {token: string, agent_id: string}) {
-  let config = {
+  const config = {
     method: 'get',
     maxBodyLength: Infinity,
     url: `https://api.retellai.com/get-agent/${agent_id}`,
@@ -43,7 +43,7 @@ export async function getAgent({token, agent_id}: {token: string, agent_id: stri
 }
 
 export async function getVoices(token: string) {
-  let config = {
+  const config = {
     method: 'get',
     maxBodyLength: Infinity,
     url: 'https://api.retellai.com/list-voices',
@@ -72,7 +72,7 @@ export async function getVoices(token: string) {
 
 export async function updateAgentName({token, agent_id}:{token: string, agent_id: string}, agent_name: string) {
   
-  let data = JSON.stringify({
+  const data = JSON.stringify({
     "agent_name": agent_name
   });
   
@@ -99,7 +99,7 @@ export async function updateAgentName({token, agent_id}:{token: string, agent_id
 }
 
 export async function getPhoneNumbers(token: string) {
-  let config = {
+  const config = {
     method: 'get',
     maxBodyLength: Infinity,
     url: 'https://api.retellai.com/list-phone-numbers',
@@ -118,12 +118,12 @@ export async function getPhoneNumbers(token: string) {
 }
 
 export async function createPhoneCall() {
-  let data = JSON.stringify({
+  const data = JSON.stringify({
     "from_number": "from_number",
     "to_number": "to_number"
   });
   
-  let config = {
+  const config = {
     method: 'post',
     maxBodyLength: Infinity,
     url: 'https://api.retellai.com/v2/create-phone-call',

@@ -28,7 +28,7 @@ export function CommunicationForm({ PhoneNumber }: {PhoneNumber: PhoneNumber[]})
               PhoneNumber.map((element, index) => {
                 const value = (index+1).toString();
                 return (
-                  <SelectItem value={value} >{element.phone_number}</SelectItem>
+                  <SelectItem key={index} value={value} >{element.phone_number}</SelectItem>
                 )
               })
           }
