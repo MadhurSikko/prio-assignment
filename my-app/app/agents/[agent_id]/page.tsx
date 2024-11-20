@@ -8,8 +8,8 @@ import { ServerFormComponent } from "@/components/server-form";
 const token = process.env.token || "";
 
 export default async function Page({params, }: { params: Promise<{ agent_id: string }>}) {
-    // const agent_id = (await params).agent_id
-    
+    const agent_id = (await params).agent_id
+    console.log(agent_id);
     // const agent = await getAgent({token, agent_id});
     const voiceData:VoicesByAccent = await getVoices(token); 
 

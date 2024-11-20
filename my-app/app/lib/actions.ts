@@ -1,6 +1,7 @@
 "use server";
 import axios from "axios";
 import { revalidatePath } from "next/cache";
+import { Voices, VoicesByAccent } from "./types";
 
 export async function getAgents(token: string) {
     const config = {
@@ -54,7 +55,7 @@ export async function getVoices(token: string) {
   
   try {
     const response = await axios.request(config);
-    const voicesByLanguage = response.data.reduce((acc:any, voice:any) => {
+    const voicesByLanguage = response.data.reduce((acc: VoicesByAccent, voice: Voices) => {
       // Group by accent
       if (!acc[voice.accent]) {
           acc[voice.accent] = [];
@@ -76,7 +77,7 @@ export async function updateAgentName({token, agent_id}:{token: string, agent_id
     "agent_name": agent_name
   });
   
-  let config = {
+  const config = {
     method: 'patch',
     maxBodyLength: Infinity,
     url: `https://api.retellai.com/update-agent/${agent_id}`,
