@@ -31,11 +31,18 @@ export function AgentTableWithPagination({agents}:{agents: Agent[]}) {
   const router = useRouter();
 
   // This needs fixing
+  // const filteredAgents = agents.filter(agent =>
+  //   Object.values(agent).some(value =>
+  //     value.toLowerCase().includes(searchTerm.toLowerCase())
+  //   )
+  // )
+
   const filteredAgents = agents.filter(agent =>
     Object.values(agent).some(value =>
+      typeof value === "string" && // Ensure the value is a string
       value.toLowerCase().includes(searchTerm.toLowerCase())
     )
-  )
+  );
 
   const totalPages = Math.ceil(filteredAgents.length / ITEMS_PER_PAGE)
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
